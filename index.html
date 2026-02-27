@@ -1,6 +1,60 @@
-#scary {
-  display: none;
-  width: 100%;    /* Mbush gjithë ekranin horizontal */
-  height: 100%;   /* Mbush ekranin vertical */
-  object-fit: cover;
-} 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Secret File</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #loading {
+      font-size: 24px;
+    }
+
+    #scary {
+      display: none;
+      width: 100%;
+      height: auto;
+    }
+
+    #text {
+      display: none;
+      font-size: 28px;
+      color: red;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loading">Loading secret file...</div>
+
+  <img id="scary" src="scary.gif">
+
+  <div id="text">HAHA GOT YOU 😈</div>
+
+  <!-- Zëri scary për efekt -->
+  <audio id="sound" src="scary-sound.mp3"></audio>
+
+  <script>
+    setTimeout(function() {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("scary").style.display = "block";
+      document.getElementById("text").style.display = "block";
+      document.getElementById("sound").play();
+    }, 2500);  // 2.5 sekonda
+  </script>
+
+</body>
+</html> scary.gif https://media.tenor.com/ofhuuD6HRRoAAAAM/caption.gif
