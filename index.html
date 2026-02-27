@@ -1,32 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Never Open</title>
+  <title>Secret File</title>
+
   <style>
     body {
+      margin: 0;
       background: black;
-      color: red;
-      text-align: center;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       font-family: Arial;
-      padding-top: 120px;
+      text-align: center;
+      overflow: hidden;
     }
-    h1 {
-      font-size: 50px;
-      animation: blink 1s infinite;
+
+    #loading {
+      font-size: 24px;
     }
-    @keyframes blink {
-      50% { opacity: 0; }
+
+    #scary {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #text {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+      font-size: 30px;
+      color: red;
+      display: none;
     }
   </style>
 </head>
+
 <body>
-  <h1>NEVER OPEN THIS 😈</h1>
-  <p>You were warned...</p>
+
+  <div id="loading">Loading secret file...</div>
+
+  <img id="scary" src="scary.png">
+
+  <div id="text">HAHA GOT YOU 😈</div>
 
   <script>
     setTimeout(function() {
-      document.body.innerHTML = "<h1 style='color:white'>😂 GOT YOU!</h1>";
-    }, 3000);
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("scary").style.display = "block";
+      document.getElementById("text").style.display = "block";
+    }, 2500);
   </script>
+
 </body>
 </html>
