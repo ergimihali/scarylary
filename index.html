@@ -1,60 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Secret File</title>
+  <meta charset="UTF-8">
+  <title>Secret Scary File</title>
 
   <style>
     body {
       margin: 0;
       background: black;
-      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       text-align: center;
       overflow: hidden;
     }
 
     #loading {
+      color: white;
       font-size: 24px;
     }
 
     #scary {
       display: none;
       width: 100%;
+      max-width: 600px;
       height: auto;
+      transform: scale(1);
+      filter: brightness(0.5) contrast(2);
+      transition: all 0.3s ease-in-out;
     }
 
     #text {
       display: none;
-      font-size: 28px;
       color: red;
+      font-size: 30px;
       margin-top: 20px;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0,0); }
+      25% { transform: translate(5px,0); }
+      50% { transform: translate(-5px,0); }
+      75% { transform: translate(5px,0); }
+      100% { transform: translate(0,0); }
+    }
+
+    #scary.shake {
+      animation: shake 0.4s;
     }
   </style>
 </head>
 
 <body>
-
   <div id="loading">Loading secret file...</div>
 
-  <img id="scary" src="scary.gif">
+  <img id="scary" src="scary.png" alt="Scary face">
 
-  <div id="text">HAHA GOT YOU 😈</div>
+  <div id="text">HAHA, GOT YOU 😈</div>
 
-  <!-- Zëri scary për efekt -->
   <audio id="sound" src="scary-sound.mp3"></audio>
 
   <script>
     setTimeout(function() {
+      // Hide loading text
       document.getElementById("loading").style.display = "none";
-      document.getElementById("scary").style.display = "block";
-      document.getElementById("text").style.display = "block";
-      document.getElementById("sound").play();
-    }, 2500);  // 2.5 sekonda
-  </script>
 
+      const img = document.getElementById("scary");
+      img.style.display = "block";
+
+      // Jump scare effect + brightness flash
+      img.style.transform = "scale(1.5)";
+      img.style.filter = "brightness(3) contrast(3)";
+      img.classList.add("shake");
+
+      // Return to normal after 0.4s
+      setTimeout(() => {
+        img.style.transform = "scale(1)";
+        img.style.filter = "brightness(1) contrast(1)";
+      }, 400);
+
+      // Show text
+      document.getElementById("text").style.display = "block";
+
+      // Play scary sound
+      document.getElementById("sound").play();
+
+    }, 2500); // 2.5 seconds delay
+  </script>
 </body>
-</html> <img id="<img id="scary"  
+</html>
