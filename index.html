@@ -1,37 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Scary</title>
+<meta charset="UTF-8">
+<title>Loading...</title>
 
 <style>
-body {
-  margin: 0;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+body{
+  margin:0;
+  background:black;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
 
-#scare {
-  display: none;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+#scary{
+  display:none;
+  position:fixed;
+  width:100vw;
+  height:100vh;
+  object-fit:cover;
+}
+
+#flash{
+  position:fixed;
+  width:100vw;
+  height:100vh;
+  background:white;
+  display:none;
+}
+
+@keyframes violentShake {
+  0%{transform:translate(0,0)}
+  10%{transform:translate(-20px,20px)}
+  20%{transform:translate(20px,-20px)}
+  30%{transform:translate(-25px,-10px)}
+  40%{transform:translate(25px,10px)}
+  50%{transform:translate(-20px,20px)}
+  60%{transform:translate(20px,-20px)}
+  70%{transform:translate(-15px,15px)}
+  80%{transform:translate(15px,-15px)}
+  90%{transform:translate(-10px,10px)}
+  100%{transform:translate(0,0)}
+}
+
+.shake{
+  animation:violentShake 0.5s infinite;
 }
 </style>
-
-<script>
-setTimeout(function() {
-  document.getElementById("scare").style.display = "block";
-}, 3000);
-</script>
-
 </head>
 
 <body>
 
-<img id="scare" src="https://i.imgur.com/8Km9tLL.png">
+<img id="scary" src="scary.png">
+<div id="flash"></div>
+<audio id="sound" src="scary-sound.mp3"></audio>
+
+<script>
+setTimeout(() => {
+
+  const flash = document.getElementById("flash");
+  flash.style.display = "block";
+
+  setTimeout(()=>{
+    flash.style.display = "none";
+
+    const img = document.getElementById("scary");
+    img.style.display = "block";
+    img.classList.add("shake");
+
+    const sound = document.getElementById("sound");
+    sound.volume = 1.0;
+    sound.play();
+
+  },100);
+
+},2500);
+</script>
 
 </body>
 </html>
