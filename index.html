@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Loading...</title>
+<title>Click to open</title>
 
 <style>
 body{
   margin:0;
   background:black;
-  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+#text{
+  color:white;
+  font-size:24px;
 }
 
 #scary{
@@ -23,61 +29,44 @@ body{
   object-fit:cover;
 }
 
-#flash{
-  position:fixed;
-  width:100vw;
-  height:100vh;
-  background:white;
-  display:none;
-}
-
-@keyframes violentShake {
+@keyframes shake {
   0%{transform:translate(0,0)}
-  10%{transform:translate(-20px,20px)}
-  20%{transform:translate(20px,-20px)}
-  30%{transform:translate(-25px,-10px)}
-  40%{transform:translate(25px,10px)}
-  50%{transform:translate(-20px,20px)}
-  60%{transform:translate(20px,-20px)}
-  70%{transform:translate(-15px,15px)}
-  80%{transform:translate(15px,-15px)}
-  90%{transform:translate(-10px,10px)}
+  20%{transform:translate(-30px,20px)}
+  40%{transform:translate(30px,-20px)}
+  60%{transform:translate(-20px,20px)}
+  80%{transform:translate(20px,-20px)}
   100%{transform:translate(0,0)}
 }
 
 .shake{
-  animation:violentShake 0.5s infinite;
+  animation:shake 0.5s infinite;
 }
 </style>
 </head>
 
-<body>
+<body onclick="startScare()">
+
+<div id="text">Click to open file</div>
 
 <img id="scary" src="scary.png">
-<div id="flash"></div>
 <audio id="sound" src="scary-sound.mp3"></audio>
 
 <script>
-setTimeout(() => {
-
-  const flash = document.getElementById("flash");
-  flash.style.display = "block";
+function startScare(){
+  document.getElementById("text").style.display="none";
 
   setTimeout(()=>{
-    flash.style.display = "none";
-
     const img = document.getElementById("scary");
-    img.style.display = "block";
+    img.style.display="block";
     img.classList.add("shake");
 
     const sound = document.getElementById("sound");
-    sound.volume = 1.0;
+    sound.volume=1.0;
     sound.play();
 
-  },100);
-
-},2500);
+  },2500);
+}
 </script>
 
 </body>
-</html>
+</html> <img src="scary.jpg">
